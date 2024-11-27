@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Solicitud de Proyecto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        h2 {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        p {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #333;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+        textarea {
+            resize: none;
+        }
+        .form-group {
+            flex: 1 1 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.half {
+            flex: 1 1 calc(50% - 10px);
+        }
+        input[type="submit"] {
+            width: 100%;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        @media (max-width: 600px) {
+            .form-group.half {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Solicitud de Proyecto</h1>
+        <h2>Código del Documento: CAN-004 | Versión No.: 1</h2>
+        <p>
+            Este documento es un Formulario de Solicitud de Proyecto diseñado para recopilar y organizar información clave sobre un proyecto en desarrollo.
+        </p>
+        <form id="projectForm">
+            <!-- Campos completos del formulario original -->
+            <div class="form-group">
+                <label for="workOrder">Orden de Trabajo/Servicio</label>
+                <input type="text" id="workOrder" name="workOrder" maxlength="20" pattern="[A-Za-z0-9\s]+" required>
+            </div>
+            <div class="form-group">
+                <label for="projectScope">Alcance del proyecto</label>
+                <textarea id="projectScope" name="projectScope" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="requirementsDoc">Documento de requisitos</label>
+                <input type="text" id="requirementsDoc" name="requirementsDoc" required>
+            </div>
+            <div class="form-group">
+                <label for="deliverables">Entregables</label>
+                <textarea id="deliverables" name="deliverables" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="solutionArch">Arquitectura de la solución</label>
+                <textarea id="solutionArch" name="solutionArch" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="infrastructure">Infraestructura</label>
+                <textarea id="infrastructure" name="infrastructure" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="supportDelivery">Entrega a soporte</label>
+                <textarea id="supportDelivery" name="supportDelivery" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="methodology">Método/metodología</label>
+                <textarea id="methodology" name="methodology" rows="2" required></textarea>
+            </div>
+            <div class="form-group half">
+                <label for="requestDate">Fecha de solicitud</label>
+                <input type="date" id="requestDate" name="requestDate" required>
+            </div>
+            <div class="form-group half">
+                <label for="deliveryDate">Fecha de entrega</label>
+                <input type="date" id="deliveryDate" name="deliveryDate" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar Solicitud">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('projectForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío por defecto
+            const form = event.target;
+            const formData = new FormData(form);
+
+            // Convertir datos a un objeto legible
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Validación adicional (si es necesaria)
+            console.log("Formulario enviado:", data);
+            alert("¡Formulario enviado correctamente!");
+        });
+    </script>
+</body>
+</html>

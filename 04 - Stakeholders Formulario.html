@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Solicitud de Proyecto</title>
+    <style>
+        /* Diseño básico del formulario */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: center;
+            color: #666666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        textarea {
+            resize: none;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario de Solicitud de Proyecto</h1>
+        <p>Por favor, completa los siguientes campos para registrar tu solicitud.</p>
+        <form id="projectForm">
+            <!-- Campo Orden de Trabajo/Servicio -->
+            <div class="form-group">
+                <label for="workOrder">Orden de Trabajo/Servicio:</label>
+                <input type="text" id="workOrder" name="workOrder" maxlength="20" placeholder="Ejemplo: OT-12345" required>
+                <span class="error-message" id="errorWorkOrder"></span>
+            </div>
+            <!-- Campo Alcance del Proyecto -->
+            <div class="form-group">
+                <label for="projectScope">Alcance del Proyecto:</label>
+                <textarea id="projectScope" name="projectScope" rows="4" placeholder="Describe el alcance del proyecto" required></textarea>
+                <span class="error-message" id="errorProjectScope"></span>
+            </div>
+            <!-- Campo Documento de Requisitos -->
+            <div class="form-group">
+                <label for="requirementsDoc">Documento de Requisitos:</label>
+                <input type="text" id="requirementsDoc" name="requirementsDoc" placeholder="Nombre del documento" required>
+                <span class="error-message" id="errorRequirementsDoc"></span>
+            </div>
+            <!-- Campo Entregables -->
+            <div class="form-group">
+                <label for="deliverables">Entregables:</label>
+                <textarea id="deliverables" name="deliverables" rows="4" placeholder="Lista de productos o resultados" required></textarea>
+                <span class="error-message" id="errorDeliverables"></span>
+            </div>
+            <!-- Campo Arquitectura de la Solución -->
+            <div class="form-group">
+                <label for="solutionArch">Arquitectura de la Solución:</label>
+                <textarea id="solutionArch" name="solutionArch" rows="4" placeholder="Describe la estructura técnica" required></textarea>
+                <span class="error-message" id="errorSolutionArch"></span>
+            </div>
+            <!-- Campo Infraestructura -->
+            <div class="form-group">
+                <label for="infrastructure">Infraestructura:</label>
+                <textarea id="infrastructure" name="infrastructure" rows="4" placeholder="Recursos físicos y tecnológicos" required></textarea>
+                <span class="error-message" id="errorInfrastructure"></span>
+            </div>
+            <!-- Campo Entrega a Soporte -->
+            <div class="form-group">
+                <label for="supportDelivery">Entrega a Soporte:</label>
+                <textarea id="supportDelivery" name="supportDelivery" rows="4" placeholder="Cómo y cuándo se entregará" required></textarea>
+                <span class="error-message" id="errorSupportDelivery"></span>
+            </div>
+            <!-- Campo Método/Metodología -->
+            <div class="form-group">
+                <label for="methodology">Método/Metodología:</label>
+                <textarea id="methodology" name="methodology" rows="4" placeholder="Ejemplo: Agile, Waterfall" required></textarea>
+                <span class="error-message" id="errorMethodology"></span>
+            </div>
+            <!-- Campo Fecha de Solicitud -->
+            <div class="form-group">
+                <label for="requestDate">Fecha de Solicitud:</label>
+                <input type="date" id="requestDate" name="requestDate" required>
+                <span class="error-message" id="errorRequestDate"></span>
+            </div>
+            <!-- Campo Fecha de Entrega -->
+            <div class="form-group">
+                <label for="deliveryDate">Fecha de Entrega:</label>
+                <input type="date" id="deliveryDate" name="deliveryDate" required>
+                <span class="error-message" id="errorDeliveryDate"></span>
+            </div>
+            <!-- Botón de Envío -->
+            <div class="form-group">
+                <input type="submit" value="Enviar Solicitud">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Captura del formulario
+        const form = document.getElementById('projectForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío automático del formulario
+
+            let isValid = true;
+
+            // Validar Orden de Trabajo/Servicio
+            const workOrder = document.getElementById('workOrder');
+            const errorWorkOrder = document.getElementById('errorWorkOrder');
+            if (!workOrder.value.trim()) {
+                errorWorkOrder.textContent = "Este campo es obligatorio.";
+                isValid = false;
+            } else {
+                errorWorkOrder.textContent = "";
+            }
+
+            // Validaciones adicionales para otros campos pueden agregarse aquí
+
+            if (isValid) {
+                alert("Formulario enviado con éxito.");
+                console.log("Datos del formulario:", Object.fromEntries(new FormData(form)));
+                form.reset(); // Limpia el formulario
+            }
+        });
+    </script>
+</body>
+</html>
